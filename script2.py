@@ -1,117 +1,99 @@
-import json
-import re
-import time
 from pathlib import Path
-from playwright.sync_api import sync_playwright, TimeoutError as PlaywrightTimeoutError
+import shutil
+import zipfile
 
-INPUT_FILE = Path("nes_games_urls.json")
-DOWNLOAD_DIR = Path("nes_roms")
-LOG_FILE = Path("download_log.json")
-DELAY_BETWEEN_GAMES = 2.0  # segundos entre downloads para evitar bloqueios
+START_PAGE = 1
+END_PAGE = 1
 
+# Pasta raiz onde este script está salvo
+BASE_DIR = Path(__file__).resolve().parent
 
-def sanitize_filename(name: str) -> str:
-    return re.sub(r'[\\/:*?"<>|]+', "_", name).strip()
+# Pasta de destino final para ROMs extraídas/copiadas
+ROMS_DIR = BASE_DIR / "roms"
 
-
-def load_json(path: Path, default):
-    if path.exists():
-        with path.open("r", encoding="utf-8") as f:
-            return json.load(f)
-    return default
+# Opcional: mude para True se quiser apagar os .zip após extrair com sucesso
+DELETE_ZIP_AFTER_EXTRACT = False
 
 
-def save_json(path: Path, data):
-    with path.open("w", encoding="utf-8") as f:
-        json.dump(data, f, ensure_ascii=False, indent=2)
+def processar_pasta(source_dir: Path, page_num: int):
+    print(f"\n=== Página {page_num}/{END_PAGE}: {source_dir} ===")
 
-
-def download_roms():
-    DOWNLOAD_DIR.mkdir(parents=True, exist_ok=True)
-    games = load_json(INPUT_FILE, [])
-    if not games:
-        print(f"Arquivo {INPUT_FILE} não encontrado ou vazio. Rode o primeiro script antes.")
+    if not source_dir.exists():
+        print(f"Pasta não encontrada, pulando: {source_dir}")
         return
 
-    log = load_json(LOG_FILE, {"completed": {}, "failed": {}})
+    if source_dir.resolve() == ROMS_DIR.resolve():
+        print("Pasta de origem é igual à pasta 'roms'; pulando para evitar conflito.")
+        return
 
-    with sync_playwright() as p:
-        browser = p.chromium.launch(headless=True)
-        context = browser.new_context(
-            accept_downloads=True,
-            user_agent=(
-                "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) "
-                "AppleWebKit/537.36 (KHTML, like Gecko) "
-                "Chrome/131.0.0.0 Safari/537.36"
-            ),
-        )
-        page = context.new_page()
+    all_files = sorted(p for p in source_dir.iterdir() if p.is_file())
+    if not all_files:
+        print(f"Nenhum arquivo encontrado em: {source_dir}")
+        shutil.rmtree(source_dir)
+        print(f"  -> Pasta vazia removida: {source_dir.name}")
+        return
 
-        total = len(games)
-        for idx, game in enumerate(games, start=1):
-            url = game["url"]
-            title = game.get("title") or game.get("slug") or f"game_{idx}"
+    ROMS_DIR.mkdir(parents=True, exist_ok=True)
 
-            if url in log["completed"]:
-                print(f"[{idx}/{total}] Já baixado, pulando: {title}")
-                continue
+    zip_files = [p for p in all_files if p.suffix.lower() == ".zip"]
+    non_zip_files = [p for p in all_files if p.suffix.lower() != ".zip"]
+    had_errors = False
 
-            print(f"[{idx}/{total}] Processando: {title} ({url})")
+    print(f"Encontrados {len(zip_files)} arquivos .zip e {len(non_zip_files)} arquivos não-zip.")
 
-            try:
-                page.goto(url, wait_until="domcontentloaded", timeout=45000)
-                page.wait_for_timeout(1000)
+    # 1. Descompacta arquivos .zip na pasta roms/
+    for idx, zip_path in enumerate(zip_files, start=1):
+        try:
+            with zipfile.ZipFile(zip_path, "r") as zf:
+                bad_file = zf.testzip()
+                if bad_file is not None:
+                    print(f"  [ZIP {idx}/{len(zip_files)}] Arquivo corrompido em {zip_path.name}: {bad_file}")
+                    had_errors = True
+                    continue
 
-                # Localiza botão/link de download na página do jogo
-                download_locator = page.locator(
-                    "a[href*='download'], button:has-text('Download'), a:has-text('Download')"
-                ).first
+                zf.extractall(ROMS_DIR)
+                print(f"  [ZIP {idx}/{len(zip_files)}] Extraído para 'roms/': {zip_path.name}")
 
-                download_locator.wait_for(state="visible", timeout=15000)
+            if DELETE_ZIP_AFTER_EXTRACT:
+                zip_path.unlink()
+                print(f"    -> Removido: {zip_path.name}")
 
-                with page.expect_download(timeout=30000) as download_info:
-                    download_locator.click()
+        except zipfile.BadZipFile:
+            print(f"  [ZIP {idx}/{len(zip_files)}] Erro: '{zip_path.name}' não é um ZIP válido ou está incompleto.")
+            had_errors = True
+        except Exception as e:
+            print(f"  [ZIP {idx}/{len(zip_files)}] Erro ao extrair '{zip_path.name}': {e}")
+            had_errors = True
 
-                download = download_info.value
-                suggested = sanitize_filename(download.suggested_filename or f"{game['slug']}.zip")
-                target_path = DOWNLOAD_DIR / suggested
+    # 2. Move arquivos que não são .zip para a pasta roms/
+    for idx, file_path in enumerate(non_zip_files, start=1):
+        try:
+            dest_file = ROMS_DIR / file_path.name
+            shutil.move(str(file_path), str(dest_file))
+            print(f"  [MOVE {idx}/{len(non_zip_files)}] Movido para 'roms/': {file_path.name}")
+        except Exception as e:
+            print(f"  [MOVE {idx}/{len(non_zip_files)}] Erro ao mover '{file_path.name}': {e}")
+            had_errors = True
 
-                # Evita sobrescrever se já existir arquivo com mesmo nome
-                if target_path.exists():
-                    stem = target_path.stem
-                    suffix = target_path.suffix
-                    target_path = DOWNLOAD_DIR / f"{stem}_{game['slug']}{suffix}"
+    # 3. Exclui a pasta da página ao final se tudo ocorreu sem erros
+    if not had_errors:
+        try:
+            shutil.rmtree(source_dir)
+            print(f"  -> Pasta excluída: {source_dir.name}")
+        except Exception as e:
+            print(f"  -> Erro ao excluir a pasta '{source_dir.name}': {e}")
+    else:
+        print(f"  -> Pasta mantida por precaução devido a erros em algum arquivo: {source_dir.name}")
 
-                download.save_as(str(target_path))
-                print(f"  -> Salvo em: {target_path}")
 
-                log["completed"][url] = {
-                    "title": title,
-                    "file": str(target_path),
-                }
-                log["failed"].pop(url, None)
-                save_json(LOG_FILE, log)
-
-            except PlaywrightTimeoutError as exc:
-                msg = f"Timeout ao baixar: {exc}"
-                print(f"  [Erro] {msg}")
-                log["failed"][url] = {"title": title, "error": msg}
-                save_json(LOG_FILE, log)
-
-            except Exception as exc:
-                msg = str(exc)
-                print(f"  [Erro] {msg}")
-                log["failed"][url] = {"title": title, "error": msg}
-                save_json(LOG_FILE, log)
-
-            time.sleep(DELAY_BETWEEN_GAMES)
-
-        browser.close()
-
-    print(
-        f"\nFinalizado! Sucessos: {len(log['completed'])} | Falhas: {len(log['failed'])}"
-    )
+def processar_intervalo_paginas():
+    ROMS_DIR.mkdir(parents=True, exist_ok=True)
+    print(f"Destino final: {ROMS_DIR}")
+    for page_num in range(START_PAGE, END_PAGE + 1):
+        source_dir = BASE_DIR / f"page{page_num}"
+        processar_pasta(source_dir, page_num)
+    print("\nProcessamento de todas as páginas concluído!")
 
 
 if __name__ == "__main__":
-    download_roms()
+    processar_intervalo_paginas()

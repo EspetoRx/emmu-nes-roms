@@ -1,81 +1,118 @@
-import json
+import asyncio
 from pathlib import Path
 from urllib.parse import urljoin
-from playwright.sync_api import sync_playwright
+from playwright.async_api import async_playwright
 
-BASE_LIST_URL = "https://www.romsgames.net/roms/nintendo/?page={page}&sort=popularity"
 START_PAGE = 1
-END_PAGE = 72
-OUTPUT_FILE = Path("nes_games_urls.json")
+END_PAGE = 1
+URL_TEMPLATE = "https://www.romsgames.net/roms/nintendo/?page={page}&sort=popularity"
+BASE_DIR = Path(__file__).resolve().parent
+
+# Ajuste conforme sua conexão e tolerância do site (ex.: 3 a 5 abas simultâneas)
+MAX_CONCURRENT_DOWNLOADS = 8
+
+CARD_LINK_SELECTOR = "a[href*='/nintendo-rom-'], a[href*='/roms/nintendo/']"
+DOWNLOAD_BTN_SELECTOR = (
+    "a[href*='download'], button:has-text('Save Game'), a:has-text('Save Game'), "
+    "button:has-text('Download'), a:has-text('Download')"
+)
 
 
-def collect_game_links():
-    collected = {}
-    if OUTPUT_FILE.exists():
-        with OUTPUT_FILE.open("r", encoding="utf-8") as f:
-            for item in json.load(f):
-                collected[item["url"]] = item
+def is_game_page_url(full_url: str) -> bool:
+    normalized = full_url.split("#")[0].rstrip("/")
+    if normalized == "https://www.romsgames.net/roms/nintendo":
+        return False
+    if "?page=" in full_url:
+        return False
+    return "/nintendo-rom-" in full_url or "/roms/nintendo/" in full_url
 
-    with sync_playwright() as p:
-        browser = p.chromium.launch(headless=True)
-        context = browser.new_context(
-            user_agent=(
-                "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) "
-                "AppleWebKit/537.36 (KHTML, like Gecko) "
-                "Chrome/131.0.0.0 Safari/537.36"
-            )
+
+async def baixar_jogo(
+    context,
+    semaphore: asyncio.Semaphore,
+    download_dir: Path,
+    idx: int,
+    total: int,
+    url: str,
+):
+    async with semaphore:
+        game_page = await context.new_page()
+        try:
+            print(f"  [{idx}/{total}] Abrindo: {url}")
+            await game_page.goto(url, wait_until="domcontentloaded")
+
+            btn = game_page.locator(DOWNLOAD_BTN_SELECTOR).first
+            await btn.wait_for(state="visible", timeout=15000)
+
+            # Aguarda o evento de início do download disparado pelo clique
+            async with game_page.expect_download(timeout=60000) as download_info:
+                await btn.click()
+
+            download = await download_info.value
+            suggested_name = download.suggested_filename or f"rom_{idx}.zip"
+            dest_path = download_dir / suggested_name
+
+            # Aguarda o download concluir e salva na pasta da página
+            await download.save_as(str(dest_path))
+            print(f"    [{idx}/{total}] Salvo em: {dest_path}")
+
+        except Exception as e:
+            print(f"    [{idx}/{total}] Erro ao baixar {url}: {e}")
+        finally:
+            await game_page.close()
+            # Pequena pausa para espaçar requisições entre lotes
+            await asyncio.sleep(1)
+
+
+async def processar_pagina(context, list_page, page_num: int):
+    page_url = URL_TEMPLATE.format(page=page_num)
+    download_dir = BASE_DIR / f"page{page_num}"
+    download_dir.mkdir(parents=True, exist_ok=True)
+
+    print(f"\n=== Página {page_num}/{END_PAGE}: {page_url} ===")
+    await list_page.goto(page_url, wait_until="domcontentloaded")
+    await list_page.wait_for_timeout(2000)
+
+    hrefs = await list_page.locator(CARD_LINK_SELECTOR).evaluate_all(
+        "els => els.map(e => e.getAttribute('href')).filter(Boolean)"
+    )
+    game_urls = list(
+        dict.fromkeys(
+            full_url
+            for h in hrefs
+            for full_url in [urljoin(page_url, h).split("#")[0]]
+            if is_game_page_url(full_url)
         )
-        page = context.new_page()
+    )
+    total = len(game_urls)
+
+    if total == 0:
+        print(f"Nenhum jogo encontrado na página {page_num}.")
+        return
+
+    print(f"Encontrados {total} links na página {page_num}. Baixando em: {download_dir}")
+
+    semaphore = asyncio.Semaphore(MAX_CONCURRENT_DOWNLOADS)
+    tasks = [
+        baixar_jogo(context, semaphore, download_dir, idx, total, url)
+        for idx, url in enumerate(game_urls, start=1)
+    ]
+
+    await asyncio.gather(*tasks)
+
+
+async def baixar_intervalo_paginas():
+    async with async_playwright() as p:
+        browser = await p.chromium.launch(headless=False)
+        context = await browser.new_context(accept_downloads=True)
+        list_page = await context.new_page()
 
         for page_num in range(START_PAGE, END_PAGE + 1):
-            url = BASE_LIST_URL.format(page=page_num)
-            print(f"[Página {page_num}/{END_PAGE}] Acessando {url}")
+            await processar_pagina(context, list_page, page_num)
 
-            try:
-                page.goto(url, wait_until="domcontentloaded", timeout=45000)
-                page.wait_for_timeout(1200)
-            except Exception as exc:
-                print(f"  [Aviso] Falha na página {page_num}: {exc}")
-                continue
-
-            links = page.eval_on_selector_all(
-                "a[href*='/roms/nintendo/']",
-                """els => els.map(el => ({
-                    href: el.getAttribute('href'),
-                    text: (el.innerText || '').trim()
-                }))"""
-            )
-
-            added_in_page = 0
-            for entry in links:
-                href = entry.get("href") or ""
-                full_url = urljoin(url, href).split("#")[0]
-
-                # Filtra apenas páginas individuais de ROMs dentro de /roms/nintendo/
-                if (
-                    "/roms/nintendo/" in full_url
-                    and "?page=" not in full_url
-                    and full_url.rstrip("/") != "https://www.romsgames.net/roms/nintendo"
-                ):
-                    if full_url not in collected:
-                        slug = full_url.rstrip("/").split("/")[-1]
-                        collected[full_url] = {
-                            "title": entry.get("text") or slug,
-                            "slug": slug,
-                            "url": full_url,
-                            "page": page_num,
-                        }
-                        added_in_page += 1
-
-            print(f"  +{added_in_page} novos jogos (Total acumulado: {len(collected)})")
-
-            with OUTPUT_FILE.open("w", encoding="utf-8") as f:
-                json.dump(list(collected.values()), f, ensure_ascii=False, indent=2)
-
-        browser.close()
-
-    print(f"\nConcluído! {len(collected)} ROMs salvas em {OUTPUT_FILE}")
+        await browser.close()
+        print("\nProcesso concluído para todas as páginas!")
 
 
 if __name__ == "__main__":
-    collect_game_links()
+    asyncio.run(baixar_intervalo_paginas())
