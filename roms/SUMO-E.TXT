@@ -1,0 +1,46 @@
+Sumo Wrestle Translation
+~~~~~~~~~~~~~~~~~~~~~~~~
+   by toma
+
+         http://spoonybard.home.ml.org
+         toma13@hotmail.com
+
+New Crap
+~~~~~~~~
+
+Fixed a teeny little bug, made the title look nicer, and
+gave the whole thing a better new font. Happy?
+
+What's Been Translated
+~~~~~~~~~~~~~~~~~~~~~~
+
+I translated everything that used the hiragana font except
+for when you get a password wrong. Please, no one tell me
+I don't have that screen done! It's encoded somehow, so
+I can't translate it! Also, in war mode 07 comes after all
+the room names. this is also an encoded thing which cannot
+be fixed. I also made a nifty looking silly title screen, I
+hope you like it! I left the kanji characters (the big ones)
+as they were for three reasons:
+
+1. They would be really annoying to hack.
+2. I don't know much kanji.
+3. the game just wouldn't be the same without them.
+
+Anyway, despite these little mishaps, most of the game IS in
+English and should be enough for any ratioal person to
+play with. If any other screwy stuff besides the password
+screen comes up, send me a pic of it and I'll see what I
+can do about it.
+
+HAVE FUN NOW OR DIE!!!!
+
+Disclaimer
+~~~~~~~~~~
+
+I didn't make this game, Temco did.  I don't want
+the thing distributed with the ROM cuz that's just
+bad and I'd never do it so you shouldn't cuz it's
+illegal and all that crap.
+Umm... how's that?
+
