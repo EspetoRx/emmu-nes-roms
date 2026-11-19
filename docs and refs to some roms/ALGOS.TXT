@@ -1,0 +1,45 @@
+Warrior of Algos
+~~~~~~~~~~~~~~~~
+  by toma
+
+         http://spoonybard.home.ml.org
+         toma13@hotmail.com
+        
+Version 0.9
+~~~~~~~~~~~
+
+ -All the text from Rygar now looks decent. I got
+  rid of the window borders around what the old
+  buddies say to give me some more space and I
+  fixed up the menu. Next will be a retranslation
+  if the text is that much different. This will
+  probably happen after I'm done Heracles 2.
+  Also, I have two patches now. Apply algos.ips
+  to the japanese version, or apply ryg2alg.ips
+  to Rygar, just because that terrible Algos rom
+  is so dang hard to find. =P
+
+Version 0.1
+~~~~~~~~~~~
+
+ -All the text from Rygar has been inserted except for the
+  menu screen. I didn't even touch the pointers yet so
+  it's kinda crappy. By the finmal version I hope to have
+  retranslated the stinky old men too, because I think
+  that they're supposed to say different stuff. Whee!
+
+Toma's Dumb Little Story About The Transaltion
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The music in Algos kicks the kapoopy outta Rygar
+so i just had to retranslate it. How silly!
+
+Disclaimer
+~~~~~~~~~~
+
+I didn't make this game, Tecmo did.  I don't want
+the thing distributed with the ROM cuz that's just
+bad and I'd never do it so you shouldn't cuz it's
+illegal and all that crap.
+Umm... how's that?
+
