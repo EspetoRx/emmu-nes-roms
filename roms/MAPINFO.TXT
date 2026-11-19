@@ -1,0 +1,128 @@
+
+"Wally Bear and the NO! Gang" details & mapper description
+===========================================================
+
+*****************************************************************************
+* NOTE: I am using mapper number 231 = $E7 to denote the AVE NINA-07 mapper *
+*****************************************************************************
+
+As per my extended .nes format proposal, the following bits are SET in the
+header:
+   byte 10 bit 4 -- This cartridge does not have extra WRAM at $6000-$7FFF
+   byte 10 bit 5 -- The mapper hardware used does have bus conflicts
+
+
+This is an unlicensed game by AVE/AGCI. Thanks to FM2000 for lending it to me.
+
+
+
+NINA-07 board description
+-------------------------
+PCB type/id is NINA-07; I'll refer to the mapper hardware as the "AVE NINA-07
+mapper".
+
+Other text printed in various places on the PCB reads:
+  AVE
+  COPYRIGHT (C) 1991
+  AMERICAN VIDEO ENTERTAINMENT
+  MADE IN U.S.A.
+On the reverse side of the board, "JJW" is the only text.
+
+
+The board features an LS377 (octal D-type flip flops), PRG ROM and CHR ROM or
+RAM.
+
+There is space for a 14-pin IC marked U5 NINA, but this is not fitted to the
+board I have examined. (The NINA chip is probably the Macronix CIC-defeating
+device, as covered by US Patent #5,004,232.)
+
+There are quite a few discrete components, most of which are related to the
+CIC-defeating function. They are as follows:
+ 3 x 22uF electrolytic capacitors,
+ 4 x 2N4401 transistors,
+ 6 x resistors,
+ 4 x diodes.
+
+There are several pairs of solder pads on the board. One of each pair is
+connected, depending on the mapper behaviour needed. Mirroring is set with one
+pair of pads.
+
+This board supports CHR-ROM or CHR-RAM. When CHR-ROM is used, there are up to
+eight 8K CHR pages, i.e. maximum CHR ROM size is 64Kbytes. The board supports
+up to 2Mbit PRG-ROM.
+
+
+
+NINA-07 mapper description
+--------------------------
+
+Mapping is set by writing to $8000-$FFFF. The value written is as follows, in
+binary:
+                  D7 | D6   D5   D4 | D3   D2 | D1   D0
+                  ---+--------------+---------+--------
+                   p |  c    c    c |  x    x |  p    p
+
+D7, D1, D0 set the 32K PRG page, with D7 being the most significant bit, D0
+the least.
+
+D6-D4 set the 8K CHR page. Of course these bits have no effect for games with
+CHR-RAM.
+
+D3 & D2 are related to the CIC-defeating hardware. They are not important for
+emulation, but are nevertheless interesting; see the "Other things" section
+below.
+
+I'm not sure of the mapping state at power-on. It probably doesn't matter
+what initial state emulators use; indeed the real cart may be in a random
+state at power-on. Of course paging does not change when the user presses the
+Reset button. (Connected to a PC with an IO-56 card, the second 32K PRG bank
+seemed to be active at power-on, but I only tested this twice.)
+
+Note that this mapper has bus conflicts, which means that the game will write
+to addresses which when read would return the same value as it is writing. To
+clarify, if the game wants to set PRG page 2, CHR page 5, then it might write
+%01010010 = $52. It would write $52 to an address which contains $52.
+
+
+
+Wally Bear specifically
+-----------------------
+Wally Bear uses CHR-RAM and 1Mbit ROM. Because of this, existing emulators
+should be able to play this game as is, providing they support the BN-ROM
+mapping (as used by Deadly Towers). You will need to change the mapper
+number in the header from 231 to whatever number the BN-ROM mapper is
+assigned. (It is best to avoid using mapper #34.)
+
+Even emulators which only support mapper #7 should be able to (partly) play
+the game.
+
+The H pads are connected for this game, meaning horizontal scrolling
+(= "vertical mirroring").
+
+
+
+Other things
+------------
+(These are just for interest, may not matter for emulation.)
+
+The latched D2 and D3 values, as far as I can tell work like this:
+ - latched D2 state is buffered (two transistors and resistors are used for
+   this), and the result is routed through a 22uF capacitor to connector pin
+   70. This pin leads to the CIC in the console. Its purpose is to (I think)
+   tell the console "something has gone wrong, please reset the NES".
+
+   The game probably sets and/or clears D2 at shortly after startup. I would
+   be interested to hear what values it writes to $8000-$FFFF initially.
+
+ - latched D3 state is buffered similarly, but since some components are not
+   fitted to the Wally Bear board, it is irrelevant. (Presumably it would do
+   *something* if these components and maybe the NINA chip were fitted. I
+   haven't looked into this.)
+
+I tested the cartridge in a fairly early model US front-loading NES. After
+initial power-on, pressing Reset the first couple of times works as you would
+expect, with the game resetting. However after this, pressing Reset does
+nothing at all!
+ 
+
+-- Mark

@@ -1,0 +1,399 @@
+        .,g8&$$$$$$$$$$$$$$$$$$$$$"""""$$$$$$$$$$$$$$$$$$$$$$$$$$$&8g,.
+       d$$$$$$$$     $$PÅ"~"ÅOY$$$     l$$$$$$$$$$$$$~~~~~$$$$$$$$$$$$$b
+      l$$$$$$$$$  n  $l   dy,  'Y$     '$$$$$$$     $$$$$$$$$$$$$$$$$$$$l      
+      $$$$$$$$$$  e  l`  l$$b    Y      'Y$$$P`     $     $$$$$$$$$$$$$$$      
+      $$$$$$$$$$  o      $$""             `Å`       $     $$$$$$$$$$$$$$$      
+      $$$$$$$$$$     b   `Y$$$$$$$     by,   ,d     $     $$$$$$$$$$$$$$$      
+      $$$$$$PÅ"      $b      $""""     $$$$y$$$     $     $$$$$$$$$$$$$$$      
+      $$PÅ"   ,y     Å"   ,  $   l     $$$$$$$$     $     $$$$$$$$$$$$$$$     
+      $$     d$$         `Å  $b        $$$$$$$$     $     $$$$$$$$$$$$$$$      
+      $$b    ~~~     b                 $$$$$$$$     $     $$$$$$$$$$$$$$$      
+      $$$8y,.        $8y,     .,y8$$$$$$$$$$$$$     $     $$$$$$$$$$$$$$$      
+      $$$$$$$$$$$    $$$$$$$$$$$$$$$$$$$$$$$$$$ggggg$$$$$$$$$$$$$$$$$$$$$      
+      $$$PÅ"~"ÅOY    P_"~"OY$"""""~~"ÅOY$$$$$$$$$PÅ"~"ÅOY$$$$PÅ"~"ÅOY$$$$      
+      $$l   dy,    .Å       'Y$$$8&by,  'Y$$$$$$l   dy,  'Y$l   dy,  'Y$$     
+      $l`  l$$b        ,g,    Y     $b    Y$$$$l`  l$$b    l`  l$$b    Y$      
+      $    $$""        l$l    l     Å'   ,d$$$$    $$""        $$""     $       
+      $b   `Y$$$$$    ;$P d   `     yy,    `~Ål    $$$$$$$$b   `Y$$$$$$$$      
+      $$b      $$$;   ;P d;         $$$$b     ;    $$$$$""""       $""""       
+      $Å"   ,yy$$$l     dl    ;     $$$$$l         $$$$$   l    ,  $   l        
+      $    `$$$$$$b    `Å'    d     $$$$$$     .   `ÅY$$b      `Å  $b        
+      $     $$$$$$$b,       ,d$     $$$$$$     b                               
+      $     $$$$$$$$$by,.,yd$$$ggggg$$$$$$     $8y,     .,y8$y,     .,y8$      
+      $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$     $$$$$$$$$$$$$$$$$$$$$$$$$$      
+                                                           trip(RMRS/iCE)
+
+
+                             R E L E A S E
+,d$b.                    "" $$b  yy $$$$ ,dÅÅb,                          ,d$b.
+$$  '                    $$ $$Yb $$ $$yy $$  $$                          `  $$
+`qb                      $$ $$ Yb$$ $$~~ $$  $S                            qb'
+,d$b.                    $$ ~~  $$$ $$   ÅYyyPÅ                          ,d$b.
+`  $$                                                                    $$  '
+  qb'         Release      : Final Fantasy 2j English Patch (c)          `qb
+,d$b.         File         : FF2PATCH.ZIP                                ,d$b.
+$$  '         Validity     : [ ] Alpha   [ ] Beta   [x] Final            `  $$
+`qb           Medium       : [x] NES     [x] PasoFami                      qb'
+,d$b.         Version/Date : 1.03  8/18/98                               ,d$b.
+`  $$                                                                    $$  '
+  qb'                                                                    `qb
+,d$b.                                                                    ,d$b.
+$$  '                                                                    `  $$
+`qb                                                                        qb'
+,d$b.                                                                    ,d$b.
+`  $$                                                                    $$  '
+  qb'   CREDITS:                                                         `qb
+,d$b.                                                                    ,d$b.
+$$  '     Translation             Code               Scripting           `  $$
+`qb      -------------        -----------           -----------            qb'
+,d$b.      Flobbasko        Alex W. Jackson            Demi              ,d$b.
+`  $$      Tomo1657             BiGWieRD                                 $$  '
+  qb'    Travis Golob          Darkforce                                 `qb
+,d$b.                            Landy                                   ,d$b.
+$$  '                          Necrosaro                                 `  $$
+`qb                              Y0SHi                                     qb'
+,d$b.                                                                     ,d$b.
+`  $$                                                                    $$  '
+  qb'   FILES INCLUDED:                                                  `qb
+,d$b.                                                                    ,d$b.
+$$  '      FF2E.NFO     ... This info file                               `  $$
+`qb        FILE_ID.DIZ  ... your average run of the mill DIZ               qb'
+,d$b.      FF2EPASO.IPS ... PasoFami format FF2 patch                    ,d$b.
+`  $$      FF2EINES.IPS ... iNES / NESticle / everything else FF2 patch  $$  '
+  qb'      FF2PATCH.EXE ... Wonderful magical patching program (use this)`qb
+,d$b.      IPS.EXE      ... Executable to apply IPS patches              ,d$b.
+$$  '      FF2E.NAM     ... Replacement NAM file (PasoFami)              `  $$
+`qb                                                                        qb'
+,d$b.                                                                    ,d$b.
+`  $$                                                                    $$  '
+  qb'                                                                    `qb
+,d$b.                                                                    ,d$b.
+$$  '                                                                    `  $$
+`qb                                                                        qb'
+,d$b.                                                                    ,d$b.
+`  $$   APPLICATION OF THE PATCH:                                        $$  '
+  qb'                                                                    `qb
+,d$b.      I  pretty much  set  this  whole thing  up  for  you  lamerz. ,d$b.
+$$  '      If  you unzip the  archive into a  directory where a Pasofami `  $$
+`qb        or iNES format FF2j ROM is, my FF2PATCH   program will search   qb'
+,d$b.      for those  ROMs and patch  them.  The new  ROM will overwrite ,d$b.
+`  $$      the original ROM, so back it the fuck up.  Still, if you feel $$  '
+  qb'      like being an adventurous little hax0r dewd and want to patch `qb
+,d$b.      it manually or if my program didn't work, follow these steps: ,d$b.
+$$  '                                                                    `  $$
+`qb        1. Unzip  the archive  into the directory where  the japanese   qb'
+,d$b.         Final Fantasy 2j ROM is located.                           ,d$b.
+`  $$                                                                    $$  '
+  qb'      2A. If you see a  FF2j ROM that ends with  the extension NES, `qb
+,d$b.          type  "IPS FF2J.NES FF2EINES.IPS"  and  it  should  patch ,d$b.
+$$  '          the ROM.                                                  `  $$
+`qb                                                                        qb'
+,d$b.      2B. If you're using the  PasoFami emulator to run FF2e,  type ,d$b.
+`  $$          "IPS FF2J.PRG FF2EPASO.IPS".  This  will  patch the  ROM. $$  '
+  qb'          (Optional)  Replace  the  FF2J.NAM  file  with  FF2E.NAM. `qb
+,d$b.          All it does is change the title bar info in PasoFami.     ,d$b.
+$$  '                                                                    `  $$
+`qb        3. Go Play your patched ROM on your emulator of choice. duh..   qb'
+,d$b.                                                                    ,d$b.
+`  $$                                                                    $$  '
+  qb'   *NOTE* The above steps assume that  your  unpatched ROM title is `qb
+,d$b.          named FF2J.  If it's called  anything else  (like  FF2 or ,d$b.
+$$  '          FinlFnt2), change the steps accordingly, see.             `  $$
+`qb                                                                        qb'
+,d$b.   *NOTE* The patch  MUST be applied  to an  original  Japanese FF2 ,d$b.
+`  $$          ROM. If you try to patch it over any previously partially $$  '
+  qb'          translated ROM, it'll fuck up.                            `qb
+,d$b.                                                                    ,d$b.
+$$  '                                                                    `  $$
+`qb                                                                        qb'
+,d$b.                                                                    ,d$b.
+`  $$                                                                    $$  '
+  qb'                                                                    `qb
+,d$b.                                                                    ,d$b.
+$$  '                                                                    `  $$
+`qb                                                                        qb'
+,d$b.   A BRIEF INTRODUCTION..                                           ,d$b.
+`  $$                                                                    $$  '
+  qb'      This patch is a translation  of an 8-bit Nintendo  ROM image. `qb
+,d$b.      A ROM image is a  file dumped from a  cartridge copier device ,d$b.
+$$  '      onto  a computer.  Essentially, it's a replica of a  Nintendo `  $$
+`qb        game on your computer, minus the cartridge itself.              qb'
+,d$b.                                                                    ,d$b.
+`  $$      The  particular  ROM image that  we've translated  comes from $$  '
+  qb'      a game  called Final Fantasy 2,  released  by Square of Japan `qb
+,d$b.      in 1988.  We are translating it  because it was never brought ,d$b.
+$$  '      over to America originally.  When most people  think of Final `  $$
+`qb        Fantasy 2,  they think of the  Super Nintendo  game featuring   qb'
+,d$b.      Cecil and Kain,  but that game was actually  Final Fantasy 4. ,d$b.
+`  $$      (Square rearranged the  numbers around  for Americans to hide $$  '
+  qb'      the fact that they had been denying  us some of their games.) `qb
+,d$b.                                                                    ,d$b.
+$$  '      With this in mind,  we decided to finally  ressurect the game `  $$
+`qb        and  let Americans  play it for  the first time.  Although by   qb'
+,d$b.      today's standards it  is far from state-of-the-art,  many can ,d$b.
+`  $$      appreciate it for the sole fact of wanting to play every part $$  '
+  qb'      of the series, or to admire its delicious oldskool gameplay.  `qb
+,d$b.                                                                    ,d$b.
+$$  '      It's  very difficult to put a ROM  back into a cartridge ever `  $$
+`qb        since  Nintendo of America  went to legal war  with cartridge   qb'
+,d$b.      copier  manufacturers,  so we  reccomend you  play the ROM on ,d$b.
+`  $$      a computer  emulator.  An emulator is  a  peice  of  software $$  '
+  qb'      designed  to mimic a gaming system,  and there happens  to be `qb
+,d$b.      a very good  Nintendo emulator called  NESticle available for ,d$b.
+$$  '      IBM-Compatible  Computers.  NESticle  will  play FF2j  almost `  $$
+`qb        exactly  like a  real Nintendo  would, and  it supports  many   qb'
+,d$b.      features  that  even surpass  the original  Nintendo  such as ,d$b.
+`  $$      a graphics editor, built-in  game genie, and realtime saving. $$  '
+  qb'      NESticle supports the 'NES' filename extension format.        `qb
+,d$b.                                                                    ,d$b.
+$$  '      It's not hard at all to find NESticle on the web.  just go to `  $$
+`qb        your favorite search engine and type keywords like 'nintendo'   qb'
+,d$b.      'nesticle' or 'ROM'  and you should have no problem.  Best of ,d$b.
+`  $$      all, NESticle is free. =]                                     $$  '
+  qb'                                                                    `qb
+,d$b.                                                                    ,d$b.
+$$  '                                                                    `  $$
+`qb                                                                        qb'
+,d$b.                                                                    ,d$b.
+`  $$                                                                    $$  '
+  qb'                                                                    `qb
+,d$b.                                                                    ,d$b.
+$$  '   WHY A PATCH?                                                     `  $$
+`qb                                                                        qb'
+,d$b.      I'm assuming a lot  of you out there are  wondering why we're ,d$b.
+`  $$      distributing the translation in patch form,  rather than just $$  '
+  qb'      going ahead and releasing the translated ROM itself.          `qb
+,d$b.                                                                    ,d$b.
+$$  '      We do it this way because  it's the only way  around the law. `  $$
+`qb        if we  were to distribute  the translated  ROM by itself,  it   qb'
+,d$b.      would  not only be a copyright  violation  towards  Square of ,d$b.
+`  $$      Japan,  but they  could  also  slap  us with  a  lawsuit  for $$  '
+  qb'      modifying  their material.  Basically,  companies  can really `qb
+,d$b.      fuck us over if they want to,  since they never  gave us per- ,d$b.
+$$  '      mission to translate their games in the first place.          `  $$
+`qb                                                                        qb'
+,d$b.      Distributing the translation in patch form prevents Square of ,d$b.
+`  $$      Japan from doing anything  to us because we're  not spreading $$  '
+  qb'      any copyrighted material.  Patches  squeeze through  a narrow `qb
+,d$b.      loophole  in the law;  it's a loophole which has allowed many ,d$b.
+$$  '      nice little  toys like cracks  and trainers  to remain  legal `  $$
+`qb        throughout the years.                                           qb'
+,d$b.                                                                    ,d$b.
+`  $$      Patches are simply files that say "change byte so-and-so from $$  '
+  qb'      this to that" over and over again. So in other words, they're `qb
+,d$b.      just  files telling  what needs to be changed  in an  assumed ,d$b.
+$$  '      file,  without distributing any  copyrighted part of the game `  $$
+`qb        itself.                                                         qb'
+,d$b.                                                                    ,d$b.
+`  $$      Don't email us  asking for the ROM;  we can't give it to you. $$  '
+  qb'                                                                    `qb
+,d$b.                                                                    ,d$b.
+$$  '                                                                    `  $$
+`qb                                                                        qb'
+,d$b.                                                                    ,d$b.
+`  $$                                                                    $$  '
+  qb'   RELEASE NOTES                                                    `qb
+,d$b.                                                                    ,d$b.
+$$  '      First of all i (Demi)  would like to  apologize to the entire `  $$
+`qb        community on behalf of myself and Som2Freak about the extreme   qb'
+,d$b.      delay of the  release of this translation.  It was originally ,d$b.
+`  $$      a project  between him and I  almost a year ago.  We couldn't $$  '
+  qb'      stand each  other so we broke up after  getting only about 3% `qb
+,d$b.      of the translation done.                                      ,d$b.
+$$  '                                                                    `  $$
+`qb        When we broke up,  I told him I would let  him take over full   qb'
+,d$b.      responsibility of getting it translated on his own,  on a few ,d$b.
+`  $$      conditions.  one of  those conditions  was  that he had to DO $$  '
+  qb'      something  with it;  he  couldn't  just  let it go to  waste. `qb
+,d$b.      Unfortunately,  that's  exactly  what happened.  He was going ,d$b.
+$$  '      to finish it up, but he wanted to expand the overall ROM size `  $$
+`qb        to fit in all the extra text, which is near impossible.         qb'
+,d$b.                                                                    ,d$b.
+`  $$      I, on the other hand,  just wanted to get the game out to the $$  '
+  qb'      public. It was apparent Som2Freak wasn't going forth with his `qb
+,d$b.      plans to expand the ROM, since it'd been about 8 months since ,d$b.
+$$  '      any work had been done with it. So, I decided to finish it up `  $$
+`qb        separately. Some text has been cut, but our group scrutinized   qb'
+,d$b.      every sentence to make sure we  fit the best wording into the ,d$b.
+`  $$      space provided.                                               $$  '
+  qb'                                                                    `qb
+,d$b.      Many  techniques  here go above  'classic' ROM  hacking.  For ,d$b.
+$$  '      instance, thanks to BiGWieRD's X-Late 3,  we have the ability `  $$
+`qb        to  manipulate the  string  pointers  in the ROM.  What  this   qb'
+,d$b.      means is  that if we have a  byte  left over here and  there, ,d$b.
+`  $$      we can optimize space by using that extra byte somewhere else $$  '
+  qb'      that it's needed.  If you would like to know more  about this `qb
+,d$b.      technique, email Planet-X software at bigwierd@montana.com.   ,d$b.
+$$  '                                                                    `  $$
+`qb        Another  technique is  one of DTE  (Dual Tile Encoding).  DTE   qb'
+,d$b.      method was cracked on 1/16/98, meshed by the combined talents ,d$b.
+`  $$      of Landy, Alex W. Jackson,  and Dark Force.  What it means is $$  '
+  qb'      we took  advantage of a  coding technique  Square uses in its `qb
+,d$b.      japanese for the "chon chon" marks. Since there are two tiles ,d$b.
+$$  '      used in  chon chon characters,  we took the  subordinate tile `  $$
+`qb        and placed  it after the  dominant character,  allowing us to   qb'
+,d$b.      display two  characters with  just one byte  call in the ROM. ,d$b.
+`  $$      When first  implemented,  we  had about  1000 extra  bytes to $$  '
+  qb'      work with (!!!),  so ever since then  there's been a lot more `qb
+,d$b.      leniency  concerning detail  and story length.  Without this, ,d$b.
+$$  '      we would have  been nothing.  I can't thank you enough, guys. `  $$
+`qb                                                                        qb'
+,d$b.      One  other point  that  would be  impossible to  miss is  the ,d$b.
+`  $$      title  screen.  It  was completely  redrawn  by  BiGWieRD and $$  '
+  qb'      hacked by him and Y0SHi, starting on 3/6/98. I believe it's a `qb
+,d$b.      rip of the  FF 1&2 NES ROM title graphic  Square released  in ,d$b.
+$$  '      Japan  in '94.  BiGWieRD took the  graphic and  recolored it, `  $$
+`qb        then  did some dope  shit  with  the credits.  The  remodeled   qb'
+,d$b.      title screen was  implanted directly over  the original code. ,d$b.
+`  $$                                                                    $$  '
+  qb'                                                                    `qb
+,d$b.                                                                    ,d$b.
+$$  '                                                                    `  $$
+`qb                                                                        qb'
+,d$b.                                                                    ,d$b.
+`  $$                                                                    $$  '
+  qb'                                                                    `qb
+,d$b.                                                                    ,d$b.
+$$  '   ABOUT THE GAME                                                   `  $$
+`qb                                                                        qb'
+,d$b.      First of all,  it's very easy to see  that FF2j is a lot like ,d$b.
+`  $$      FF1. In fact,  most of the graphics were reused,  which kinda $$  '
+  qb'      dissapointed  me  when I  first  played it.  Nevertheless,  I `qb
+,d$b.      thought along the  same lines and decided it  would look best ,d$b.
+$$  '      with the old FF1 font in it; Square of America probably would `  $$
+`qb        have done the same.                                             qb'
+,d$b.                                                                    ,d$b.
+`  $$      I'm not  going to go into  detail about  playing the game  or $$  '
+  qb'      give  you a  walkthru on it,  since  there  are  already  two `qb
+,d$b.      documents on this  at www.square.net.  I'll just go over some ,d$b.
+$$  '      main points lightly:                                          `  $$
+`qb                                                                        qb'
+,d$b.      -The Light Warriors' names are Frioniel (shortened to Fionir) ,d$b.
+`  $$       Lionheart (shortened to Leon),  Maria, and Guy; in the order $$  '
+  qb'       they appear in the name select boxes after the prologue.     `qb
+,d$b.                                                                    ,d$b.
+$$  '      -There are no experience points or levels. Instead, there are `  $$
+`qb         counters in the  status menu that tally  how much you use of   qb'
+,d$b.       each weapon or spell.  You gain skill only  in what you use. ,d$b.
+`  $$                                                                    $$  '
+  qb'      -The map trick  (TCELES B HSUP)  works once you get the ring. `qb
+,d$b.                                                                    ,d$b.
+$$  '      -There's  a  semi-confusing  dialogue  interaction  system in `  $$
+`qb         FF2j.  It works around the Say/Learn  principle,  meaning at   qb'
+,d$b.       certain points in the game,  you will have a chance to Learn ,d$b.
+`  $$       a password or keyword.  Once you know a keyword, you can Say $$  '
+  qb'       it to direct the conversation with particular people.        `qb
+,d$b.                                                                    ,d$b.
+$$  '      -Although the battle interface  was improved over FF1, the AI `  $$
+`qb         which redirects  an attack to  another enemy  after an enemy   qb'
+,d$b.       dies one wasn't implemented yet.  A lot of people hated this ,d$b.
+`  $$       about FF1; I'm the only person I know of who liked it.  IMO, $$  '
+  qb'       it adds a lot more strategy and thought to the battles.      `qb
+,d$b.                                                                    ,d$b.
+$$  '      -Chocobos  made their first  appearance  in this game.  Their `  $$
+`qb         forest is South of Kashuon.                                    qb'
+,d$b.                                                                    ,d$b.
+`  $$      -Cid also  made his debut  in this game.  Airships play a key $$  '
+  qb'       role in the plot, too.  At first you'll  charter flights  on `qb
+,d$b.       Cid's airship  (which looks mysteriously similar  to the FF1 ,d$b.
+$$  '       airship).  Later on  in the game,  you'll see  a larger ship `  $$
+`qb         called the Warship, being built by the Empire.                 qb'
+,d$b.                                                                    ,d$b.
+`  $$      -This game is  definitely the  hardest of  the Final  Fantasy $$  '
+  qb'       series.  IMO,  FF started  getting  pussywhipped  around the `qb
+,d$b.       3rd  or 4th game.  If you go  into an area  on the world map ,d$b.
+$$  '       that has enemies that are really too hard, that's the game's `  $$
+`qb         way of saying "Don't go there yet".  Like FF1, there's a ton   qb'
+,d$b.       of  leveling up to  be done,  but also a  lot of plot.  Good ,d$b.
+`  $$       luck!                                                        $$  '
+  qb'                                                                    `qb
+,d$b.                                                                    ,d$b.
+$$  '                                                                    `  $$
+`qb                                                                        qb'
+,d$b.                                                                    ,d$b.
+`  $$                                                                    $$  '
+  qb'                                                                    `qb
+,d$b.                                                                    ,d$b.
+$$  '                                                                    `  $$
+`qb                                                                        qb'
+,d$b.   FOLKS WHO HELPED OUT                                             ,d$b.
+`  $$                                                                    $$  '
+  qb'       Luke Drelick .................................... Save games `qb
+,d$b.       Opoth ........................................... Save games ,d$b.
+$$  '       Landy ................................. Original Method Code `  $$
+`qb         Necrosaro ...................................... Translation   qb'
+,d$b.       Herman Ho ...................................... Translation ,d$b.
+`  $$       SgtBowHac ...................................... Translation $$  '
+  qb'       Wildbill ....................................... Translation `qb
+,d$b.       Emperor Jim .................................... Translation ,d$b.
+$$  '       Darkniciad ..................................... Translation `  $$
+`qb         XxDethxX ...................................... Web Graphics   qb'
+,d$b.       Chris Zakelj ........................................ Nuthin .d$b.
+`  $$       Nobuaki Andou ..................................... Debugger $$  '
+  qb'       D ............................................ Pointer Table `qb
+,d$b.       Jason Li ............................... Original Web Design ,d$b.
+$$  '       The_Brain .................................... X-Late Schema `  $$
+`qb         Sardu ........................................... Intro Help   qb'
+,d$b.       Matt Conte ...................................... Intro Help ,d$b.
+`  $$       Stumble ................................................ ROM $$  '
+  qb'       Trip ...................................... ASCII, Beta test `qb
+,d$b.                                                                    ,d$b.
+$$  '                                                                    `  $$
+`qb                                                                        qb'
+,d$b.                                                                    ,d$b.
+`  $$                                                                    $$  '
+  qb'                                                                    `qb
+,d$b.                                                                    ,d$b.
+$$  '   MIDDLE FINGER AWARDS:                                            `  $$
+`qb                                                                        qb'
+,d$b.      Akilla, for never believing we could do it in the first place ,d$b.
+`  $$      & trying to sabotage  the group. For you sir,  a hearty hand- $$  '
+  qb'      shake and an endearing -fuck you-  from all of us here at Neo `qb
+,d$b.      Demiforce.                                                    ,d$b.
+$$  '                                                                    `  $$
+`qb        The Translation Corperation,  for downgrading the translation   qb'
+,d$b.      scene as a whole witht their shitty releases of FF3j.  Take a ,d$b.
+`  $$      seat!                                                         $$  '
+  qb'                                                                    `qb
+,d$b.      SoM2Freak - Well,  let's see.  First,  when he  heard we were ,d$b.
+$$  '      resurrecting the  FF2j translation,  the charming  little lad `  $$
+`qb        threatened to start his own translation  and beat us to it if   qb'
+,d$b.      we didn't let him in our group.  Then after he forced his way ,d$b.
+`  $$      in,  he ditched  us and never  turned in any work,  all while $$  '
+  qb'      hanging things over our  heads such as  coding techniques and `qb
+,d$b.      connections  to people  who knew how  to recode parts  of the ,d$b.
+$$  '      ROM. 1000 bucks says he'll try  FF2j again out of spite. Why? `  $$
+`qb        I dunno. He's a sleaze.                                         qb'
+,d$b.                                                                    ,d$b.
+`  $$      My parents,  who believe anything that  doesn't pay an hourly $$  '
+  qb'      wage is a waste of time.                                      `qb
+,d$b.                                                                    ,d$b.
+$$  '                                                                    `  $$
+`qb                                                                        qb'
+,d$b.                                                                    ,d$b.
+`  $$                                                                    $$  '
+  qb'                                                                    `qb
+,d$b.   DISTRO                                                           ,d$b.
+$$  '                                                                    `  $$
+`qb        http://www.frognet.net/~demi/        Neo Demiforce home page    qb'
+,d$b.      http://tc.simplenet.com/square/      Lots of Squaresoft ROMs  ,d$b.
+`  $$      http://www.squareplanet.net/rpgemu/  Translation  news  site  $$  '
+  qb'                                                                    `qb
+,d$b.                                                                    ,d$b.
+$$  '                                                                    `  $$
+`qb                                                                        qb'
+,d$b.                                                                    ,d$b.
+`  $$                                                                    $$  '
+  qb'   DISCLAIMER                                                       `qb
+,d$b.                                                                    ,d$b.
+$$  '      This file nor any work of  Neo Demiforce  was never  intended `  $$
+`qb        to accompany any  copywritten ROM  or property.  This file or   qb'
+,d$b.      patch must  never be  distributed with the  copywritten  ROM. ,d$b.
+`  $$      If you're  reading this  out of  an archive that  has the ROM $$  '
+  qb'      in it,  we didn't put it there,  so fuck yourself and  have a `qb
+,d$b.      nice day.                                                     ,d$b.
+$$  '                                                                    `  $$
+`qb                                                                        qb'
+
+                                                   -Peace out
+                                                    xoxoxoxox

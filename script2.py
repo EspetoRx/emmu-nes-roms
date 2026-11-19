@@ -2,8 +2,8 @@ from pathlib import Path
 import shutil
 import zipfile
 
-START_PAGE = 2
-END_PAGE = 10
+START_PAGE = 29
+END_PAGE = 29
 
 # Pasta raiz onde este script está salvo
 BASE_DIR = Path(__file__).resolve().parent
